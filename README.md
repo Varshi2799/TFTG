@@ -23,12 +23,78 @@ Database chosen for this study: TRRUST
 
 Indications tested in this case scenario: 
 
-Invasive breast cancer
+--> Invasive breast cancer
 
-Adenocortical carcinoma
+--> Adenocortical carcinoma
 
-Cholangiocarcinoma (PancancerAtlas)
+--> Cholangiocarcinoma (PancancerAtlas)
 
-4) Filter the TF-TG from the dataset
+4) Filter the TF-TG from the dataset:
+
+
 Detailed step by step explanation with the code
+
+
 Platform used for analysis: Google collab
+
+
+Download the mRNA dataset for the indication of interest: Go to cbioportal and download the tar.gz file for the indications of interest
+
+1) !wget https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz
+=> wget is a command-line utility for retrieving content from web servers.
+
+
+https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz is the URL of the file to be downloaded.
+
+
+This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz from the specified URL.
+
+2) !tar -xvzf acc_tcga_pan_can_atlas_2018.tar.gz
+
+=> tar is a command-line utility for working with tar archives.
+
+
+-x is an option to extract files from an archive.
+
+
+-v is an option for verbose output, which means it will list the files as they are extracted.
+
+
+-z is an option to decompress the archive using gzip.
+
+
+-f is an option to specify the input archive file, which in this case is acc_tcga_pan_can_atlas_2018.tar.gz.
+
+
+So, this command extracts the contents of the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz and lists the files as they are extracted.
+
+3)
+import pandas as pd
+
+
+import numpy as np
+
+
+from scipy.stats import pearsonr
+
+
+import scipy.stats as stats
+ 
+# Path to your uploaded file
+
+
+file_path = 'acc_tcga_pan_can_atlas_2018/data_mrna_seq_v2_rsem.txt'
+ 
+# Load the file, skipping comment lines
+
+
+df = pd.read_csv(file_path, sep="\t", comment='#')
+
+
+=> Import Libraries: Imports pandas, numpy, and statistical tools from scipy.stats for data handling and analysis.
+
+Set File Path: Defines file_path pointing to the data file.
+
+Load Data: Uses pd.read_csv() to load a tab-separated file into a DataFrame (df), skipping comment lines (starting with #).
+
+
