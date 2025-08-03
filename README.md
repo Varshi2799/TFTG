@@ -7,7 +7,6 @@ AIM: To understand how a given transcription factor performs across multiple ind
 STEPS:
 
 
--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **1) Find a reliable database that has data on Transcription factor and its respective targets with proper experimental backup**
@@ -28,7 +27,7 @@ Database chosen for this study: TRRUST
 -> PMID supported
 
 
----------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 **2) Download the mRNA expression dataset for indication of choice from Cbioportal**
@@ -43,7 +42,6 @@ Indications tested in this case scenario:
 --> Cholangiocarcinoma (PancancerAtlas)
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **3) Filter the TF-TG from the dataset:**
