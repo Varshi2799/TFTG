@@ -4,7 +4,13 @@ Identification of indication specific transcription factors
 AIM: To understand how a given transcription factor performs across multiple indications
 
 STEPS:
+
+
+
+
 1) Find a reliable database that has data on Transcription factor and its respective targets with proper experimental backup
+
+
 Database chosen for this study: TRRUST
 
 
@@ -19,7 +25,11 @@ Database chosen for this study: TRRUST
 
 -> PMID supported
 
+
+
+
 2) Download the mRNA expression dataset for indication of choice from Cbioportal
+
 
 Indications tested in this case scenario: 
 
@@ -28,6 +38,9 @@ Indications tested in this case scenario:
 --> Adenocortical carcinoma
 
 --> Cholangiocarcinoma (PancancerAtlas)
+
+
+
 
 4) Filter the TF-TG from the dataset:
 
@@ -40,7 +53,11 @@ Platform used for analysis: Google collab
 
 Download the mRNA dataset for the indication of interest: Go to cbioportal and download the tar.gz file for the indications of interest
 
-1) !wget https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz
+1) Download the dataset from cbioportal : 
+
+!wget https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz
+
+
 => wget is a command-line utility for retrieving content from web servers.
 
 
@@ -49,7 +66,12 @@ https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz i
 
 This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz from the specified URL.
 
-2) !tar -xvzf acc_tcga_pan_can_atlas_2018.tar.gz
+
+
+
+2) Unzip the tar file: 
+
+!tar -xvzf acc_tcga_pan_can_atlas_2018.tar.gz
 
 => tar is a command-line utility for working with tar archives.
 
@@ -68,7 +90,11 @@ This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018
 
 So, this command extracts the contents of the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz and lists the files as they are extracted.
 
-3)
+
+
+
+3) Load the mRNA data of the genes and samples in pandas dataframe:
+
 import pandas as pd
 
 
@@ -79,13 +105,9 @@ from scipy.stats import pearsonr
 
 
 import scipy.stats as stats
- 
-# Path to your uploaded file
 
 
 file_path = 'acc_tcga_pan_can_atlas_2018/data_mrna_seq_v2_rsem.txt'
- 
-# Load the file, skipping comment lines
 
 
 df = pd.read_csv(file_path, sep="\t", comment='#')
@@ -93,8 +115,59 @@ df = pd.read_csv(file_path, sep="\t", comment='#')
 
 => Import Libraries: Imports pandas, numpy, and statistical tools from scipy.stats for data handling and analysis.
 
+
 Set File Path: Defines file_path pointing to the data file.
+
 
 Load Data: Uses pd.read_csv() to load a tab-separated file into a DataFrame (df), skipping comment lines (starting with #).
 
+
+
+
+4) Load the data from the transcription factor target database and load it into pandas dataframe:
+
+
+!wget https://www.grnpedia.org/trrust/data/trrust_rawdata.human.tsv
+
+
+import pandas as pd
+
+
+import numpy as np
+
+
+from scipy.stats import pearsonr
+
+
+import scipy.stats as stats
+
+ 
+file_path = 'trrust_rawdata.human.tsv.1'
+
+
+df = pd.read_csv(file_path, sep="\t", comment='#')
+
+
+
+
+5) Assign headers to the dataframe
+
+
+df_trrust.columns = ['TF', 'TG', 'impact', 'PMID']
+
+
+display(df_trrust.head())
+
+
+
+
+6) Export the datafile as an excel file to analyse
+
+
+df_trrust.to_excel('trrust_data.xlsx', index=False)
+
+from google.colab import files
+
+
+files.download('trrust_data.xlsx')
 
