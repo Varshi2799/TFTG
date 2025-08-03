@@ -7,6 +7,7 @@ AIM: To understand how a given transcription factor performs across multiple ind
 STEPS:
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **1) Find a reliable database that has data on Transcription factor and its respective targets with proper experimental backup**
@@ -27,6 +28,7 @@ Database chosen for this study: TRRUST
 -> PMID supported
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **2) Download the mRNA expression dataset for indication of choice from Cbioportal**
@@ -41,6 +43,7 @@ Indications tested in this case scenario:
 --> Cholangiocarcinoma (PancancerAtlas)
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **3) Filter the TF-TG from the dataset:**
@@ -53,6 +56,8 @@ Platform used for analysis: Google collab
 
 
 Download the mRNA dataset for the indication of interest: Go to cbioportal and download the tar.gz file for the indications of interest
+
+-----------
 
 *1) Download the dataset from cbioportal :* 
 
@@ -67,8 +72,7 @@ https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz i
 
 This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz from the specified URL.
 
-
-
+----------------------------------------
 
 *2) Unzip the tar file:* 
 
@@ -91,8 +95,7 @@ This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018
 
 So, this command extracts the contents of the gzipped tar archive named acc_tcga_pan_can_atlas_2018.tar.gz and lists the files as they are extracted.
 
-
-
+-----------------------------------------------------------
 
 *3) Load the mRNA data of the genes and samples in pandas dataframe:*
 
@@ -122,8 +125,7 @@ Set File Path: Defines file_path pointing to the data file.
 
 Load Data: Uses pd.read_csv() to load a tab-separated file into a DataFrame (df), skipping comment lines (starting with #).
 
-
-
+----------------------------------------------------------------------
 
 *4) Load the data from the transcription factor target database and load it into pandas dataframe:*
 
@@ -148,8 +150,7 @@ file_path = 'trrust_rawdata.human.tsv.1'
 
 df = pd.read_csv(file_path, sep="\t", comment='#')
 
-
-
+-------------------------------------------------------------------------------------------
 
 *5) Assign headers to the dataframe*
 
@@ -159,8 +160,7 @@ df_trrust.columns = ['TF', 'TG', 'impact', 'PMID']
 
 display(df_trrust.head())
 
-
-
+-------------------------------------------------------------------------------------------
 
 *6) Export the datafile as an excel file to analyse*
 
