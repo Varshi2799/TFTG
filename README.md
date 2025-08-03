@@ -3,12 +3,13 @@ Identification of indication specific transcription factors
 
 AIM: To understand how a given transcription factor performs across multiple indications
 
+
 STEPS:
 
 
 
 
-1) Find a reliable database that has data on Transcription factor and its respective targets with proper experimental backup
+**1) Find a reliable database that has data on Transcription factor and its respective targets with proper experimental backup**
 
 
 Database chosen for this study: TRRUST
@@ -28,7 +29,7 @@ Database chosen for this study: TRRUST
 
 
 
-2) Download the mRNA expression dataset for indication of choice from Cbioportal
+**2) Download the mRNA expression dataset for indication of choice from Cbioportal**
 
 
 Indications tested in this case scenario: 
@@ -42,7 +43,7 @@ Indications tested in this case scenario:
 
 
 
-4) Filter the TF-TG from the dataset:
+**3) Filter the TF-TG from the dataset:**
 
 
 Detailed step by step explanation with the code
@@ -53,7 +54,7 @@ Platform used for analysis: Google collab
 
 Download the mRNA dataset for the indication of interest: Go to cbioportal and download the tar.gz file for the indications of interest
 
-1) Download the dataset from cbioportal : 
+*1) Download the dataset from cbioportal :* 
 
 !wget https://cbioportal-datahub.s3.amazonaws.com/acc_tcga_pan_can_atlas_2018.tar.gz
 
@@ -69,7 +70,7 @@ This command downloads the gzipped tar archive named acc_tcga_pan_can_atlas_2018
 
 
 
-2) Unzip the tar file: 
+*2) Unzip the tar file:* 
 
 !tar -xvzf acc_tcga_pan_can_atlas_2018.tar.gz
 
@@ -93,7 +94,7 @@ So, this command extracts the contents of the gzipped tar archive named acc_tcga
 
 
 
-3) Load the mRNA data of the genes and samples in pandas dataframe:
+*3) Load the mRNA data of the genes and samples in pandas dataframe:*
 
 import pandas as pd
 
@@ -124,7 +125,7 @@ Load Data: Uses pd.read_csv() to load a tab-separated file into a DataFrame (df)
 
 
 
-4) Load the data from the transcription factor target database and load it into pandas dataframe:
+*4) Load the data from the transcription factor target database and load it into pandas dataframe:*
 
 
 !wget https://www.grnpedia.org/trrust/data/trrust_rawdata.human.tsv
@@ -150,7 +151,7 @@ df = pd.read_csv(file_path, sep="\t", comment='#')
 
 
 
-5) Assign headers to the dataframe
+*5) Assign headers to the dataframe*
 
 
 df_trrust.columns = ['TF', 'TG', 'impact', 'PMID']
@@ -161,7 +162,7 @@ display(df_trrust.head())
 
 
 
-6) Export the datafile as an excel file to analyse
+*6) Export the datafile as an excel file to analyse*
 
 
 df_trrust.to_excel('trrust_data.xlsx', index=False)
@@ -170,4 +171,6 @@ from google.colab import files
 
 
 files.download('trrust_data.xlsx')
+
+
 
